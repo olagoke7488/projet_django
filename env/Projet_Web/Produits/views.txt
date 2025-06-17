@@ -1,0 +1,83 @@
+from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+
+from django.http import JsonResponse
+from django.core.files.storage import FileSystemStorage
+from django.views.generic import ListView,CreateView,UpdateView,DetailView,DeleteView
+from .forms import *
+
+from django.contrib import messages
+from datetime import datetime
+
+from .models import *
+
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
+# Create your views here.
+
+#def home(request):
+    
+    #recuration des donnée
+   # donnee = produits.objects.all()
+
+    #context = {
+     #   "donnee":donnee
+   # }
+   # return render(request, 'home.html', context)
+ 
+   
+   
+class affichage(ListView):
+    
+    #affiche template
+    template_name = 'home.html'
+    #recuperation des donnée
+    queryset = produits.objects.all()
+    
+#function d'ajout de donnée
+def ajout_donnees(request):
+    if request.method == 'POST':
+        # Récupération des données du formulaire
+        name = request.POST['name']
+        category = request.POST['category']
+        price = request.POST['price']
+        quantité = request.POST['quantité']
+        description = request.POST['description']
+        date_expiration = request.POST['date_expiration']
+        image = request.FILES['image']
+        
+        # Récupération de la catégorie dans la table en fonction de la clé primaire
+        category = categories.objects.get(pk=request.POST['category'])
+        
+        savedonnes = produits(
+            name=name,
+            category=category,
+            price=price,
+            quantité=quantité,
+            description=description,
+            date_expiration=date_expiration,
+            image=image
+        )
+        savedonnes.save()
+        return redirect('home')
+    
+    else:
+         category = categories.objects.all
+         return render(request, "ajout-donnees.html", {'category': category})
+    # Création d'un nouvel objet produit
+       # new_product = produits(
+           # name=name,
+           # category=category,
+            #price=price,
+          #  quantité=quantity,
+           # description=description,
+           # date_expiration=date_expiration
+       # )
+        
+        # Enregistrement du produit dans la base de données
+       # new_product.save()
+    #return render(request, "ajout-donnees.html")
+
+

@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajout de Données</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+</head>
+<body>
+
+<div class="container-fluid px-1 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+            <h3>Ajout de produit</h3>
+            <p class="blue-text">veuillez notez que<br>tous les champs sont obligatoires.</p>
+            <div class="card">
+                <h5 class="text-center mb-4">Powering world-class companies</h5>
+                <form class="form-card"  method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                            <label class="form-control-label px-3">nom du produit<span class="text-danger"> *</span></label>
+                            <input type="text" id="name" name="name" placeholder="Enter le nom du produit" onblur="validate(1)"required>
+                        </div>
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                            <label class="form-control-label px-3">selection de la categorie<span class="text-danger"> *</span></label>
+                          
+                          
+                            <select name="category" id="category" required>
+                               {% for category in category %}
+                                   <option value="{{category.pk}}" >{{category.name}}</option>
+                               {% endfor %}
+                           </select>
+                        </div>
+                    </div>
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                            <label class="form-control-label px-3">Prix du produit<span class="text-danger"> *</span></label>
+                            <input type="text" id="price" name="price" placeholder="Enter le prix du produit" onblur="validate(3)" required>
+                        </div>
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                            <label class="form-control-label px-3">quantité de produit<span class="text-danger"> *</span></label>
+                            <input type="text" id="quantité" name="quantité" placeholder="Enter la quantité" onblur="validate(4)" required>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                        <div class="form-group col-12 flex-column d-flex">
+                            <label class="form-control-label px-3">date d'expiration<span class="text-danger"> *</span></label>
+                            <input type="text" id="date_expiration" name="date_expiration" placeholder="Enter la date d'expiration" onblur="validate(6)"required>
+                            <label class="form-control-label px-3">image du produit<span class="text-danger"> *</span></label>
+                            <input type="file" id="image" name="image" onblur="validate(6)"required>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                            <label class="form-control-label px-3">description<span class="text-danger"> *</span></label>
+                            <input type="text" id="description" name="description" placeholder="Enter la description" onblur="validate(5)" required>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="form-group col-sm-6">
+                            <input type="submit" value="enregistrer" class="btn-block btn-primary" />
+                            <!--button type="submit" class="btn-block btn-primary">enregistrer</button-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/form-validation.js' %}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+from django.db import models
+
+# Create your models here.
+
+# clla
+
+class categories(models.Model):
+    name = models.CharField(max_length=250)
+    def __str__(self):
+        return self.name
+
+
+# class plyr les produits
+
+class produits(models.Model):
+    name = models.CharField(max_length=100)
+    category = models.ForeignKey(categories, on_delete=models.CASCADE)
+    price = models.IntegerField()
+    quantité = models.PositiveIntegerField(default=0)
+    description = models.TextField()
+    date_ajout = models.DateTimeField(auto_now_add=True)
+    date_expiration = models.DateField() 
+    image = models.ImageField(null=True,blank=True,upload_to='media/')
+    
+    
+    class Meta:
+        ordering = ['date_ajout']
+    
+    
+    def status_quantite(self):
+        
+    # si la quantite est egale a affiche rouge
+    
+        if self.quantité == 0 :
+           return 'red'
+    
+    #sinon si la quantite est superieur ou egal a 10 affiche orange
+    
+        
+        elif self.quantité <= 10 :
+             return 'orange'
+        
+        else:
+            return'green'
+    def __str__(self):
+        return self.name
+
+
+class customer(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+    
+       
+class vente(models.Model):
+    produit = models.ForeignKey(produits, on_delete=models.CASCADE)
+    sale_date = models.DateTimeField(auto_now_add=True) 
+    quantite = models.PositiveIntegerField()
+    customer = models.CharField(max_length=200)
+    total_amont = models.DecimalField(max_digits=10, decimal_places=2)
+    
+    def __str__(self):
+        return self.produit
+    
+    
+class facture_client(models.Model):
+    customer = models.ForeignKey(customer, on_delete= models.CASCADE)
+    quantite = models.PositiveIntegerField()
+    date_achat = models.DateTimeField(auto_now_add=False)
+    total_amond = models.ForeignKey(vente, on_delete=models.CASCADE)
+    produit = models.ForeignKey(produits, on_delete=models.CASCADE) 
+    
+    def __str__(self):
+        return f"le recu de (self.customer.customer)"   
+    

@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Products Dashboard UI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="{% static 'bootstrap.min.js' %}">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>  
+<!-- partial:index.partial.html -->
+
+<div class="app-container">
+
+    {% include "zone_gauche.html" %}
+  </div>
+
+
+
+  <div class="app-content">
+{% include "header.html" %}
+{% include "header2.html" %}
+
+
+
+{% block Produits %}
+{% endblock Produits  %}
+
+
+ </div>
+
+
+
+
+</body>
+
+<!-- partial -->
+  <script  src="{% static 'script.js' %}"></script>
+  <script src="{% static 'bootstrap.min.js' %}"></script>
+
+</body>
+</html>
