@@ -1,0 +1,82 @@
+/* Style dynamique pour les sections produits et historique */
+.products-header, .table.table-striped thead tr {
+  display: flex;
+  background: #f5f5f5;
+  font-weight: bold;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  margin-bottom: 0.5rem;
+}
+.products-header > div, .products-row > div, .table.table-striped th, .table.table-striped td {
+  flex: 1;
+  padding: 10px 8px;
+  text-align: left;
+}
+.products-row {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+.products-row:hover {
+  background: #f0f8ff;
+}
+.product-cell.image img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.product-cell.image span {
+  vertical-align: middle;
+  font-weight: 500;
+}
+.status.active {
+  color: #2ecc40;
+  font-weight: bold;
+}
+.button {
+  border: none;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  background: #2ecc40;
+  display: inline-block;
+}
+.table.table-striped {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.table.table-striped th, .table.table-striped td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #eee;
+}
+.table.table-striped tr:hover {
+  background: #f0f8ff;
+}
+.btn.btn-danger {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn.btn-danger:hover {
+  background: #c0392b;
+}
+.cell-label {
+  color: #888;
+  font-size: 0.95em;
+  margin-right: 4px;
+}
