@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Utilisateur</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100%;
+      background-color: #1e293b;
+      color: white;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      margin-top: 0;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 12px;
+      margin: 10px 0;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #3b82f6;
+    }
+
+    .main-content {
+      margin-left: 240px;
+      padding: 20px;
+    }
+
+    .section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Mon Dashboard</h2>
+    <a href="#profil">👤 Profil</a>
+    <a href="#produits">📦 Produits</a>
+    <a href="#historique">📜 Historique</a>
+  </div>
+
+  <div class="main-content">
+    <div class="section" id="profil">
+      <h3>Profil</h3>
+      <p><strong>Nom :</strong> Jean Dupont</p>
+      <p><strong>Email :</strong> jean.dupont@example.com</p>
+      <p><strong>Téléphone :</strong> +225 07 00 00 00</p>
+    </div>
+
+    <div class="section" id="produits">
+      <h3>Produits</h3>
+      <ul>
+        <li>Bouteille de gaz 6kg - 5 000 FCFA</li>
+        <li>Bouteille de gaz 12.5kg - 9 500 FCFA</li>
+        <li>Bouteille de gaz 25kg - 18 000 FCFA</li>
+      </ul>
+    </div>
+
+    <div class="section" id="historique">
+      <h3>Historique des commandes</h3>
+      <ul>
+        <li>Commande #001 - 12.5kg - 9 500 FCFA - 25 juin 2025</li>
+        <li>Commande #002 - 6kg - 5 000 FCFA - 12 juin 2025</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

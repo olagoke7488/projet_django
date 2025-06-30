@@ -1,0 +1,405 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Immobilier Élégance</title>
+  <meta name="description" content="Agence immobilière de prestige proposant des biens d'exception">
+  <link rel="stylesheet" href="{% static 'css/stylesGen.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="logo-primary">GAZ</span>
+        <span class="logo-secondary">Élégance</span>
+      </a>
+      
+      <nav class="nav desktop-nav">
+        <a href="#" class="nav-link active">Accueil</a>
+        <a href="#featured-properties" class="nav-link">Nos Bouteilles</a>
+        <a href="#about-section" class="nav-link">À Propos</a>
+        <a href="#contact-section" class="nav-link">Contact</a>
+        <a href="#" class="btn btn-primary">Estimer un bien</a>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="nav mobile-nav">
+        <a href="index.html" class="nav-link active">Accueil</a>
+        <a href="properties.html" class="nav-link">Nos Biens</a>
+        <a href="about.html" class="nav-link">À Propos</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="#" class="btn btn-primary mobile-btn">Estimer un bien</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-slider">
+        <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop')">
+          <div class="hero-content">
+            <h1>Trouvez votre bien d'exception</h1>
+            <p>Une sélection de bouteilles repondant a vos exigences.</p>
+          </div>
+        </div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop')">
+          <div class="hero-content">
+            <h1>Des Arcticle</h1>
+            <p>Une sélection exclusive d'Arcticle d'exception pour répondre à toutes vos exigences.</p>
+          </div>
+        </div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=2084&auto=format&fit=crop')">
+          <div class="hero-content">
+            <h1>Un service Vente sur mesure</h1>
+            <p>Une sélection exclusive d'Arcticle d'exception pour répondre à toutes vos exigences.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-indicators">
+        <button class="indicator active" data-slide="0"></button>
+        <button class="indicator" data-slide="1"></button>
+        <button class="indicator" data-slide="2"></button>
+      </div>
+
+     <!-- <div class="search-container">
+        <div class="search-form">
+          <div class="search-field">
+            <i class="icon-location"></i>
+            <select>
+              <option value="">Type de bouteilles</option>
+              <option value="paris">B06</option>
+              <option value="lyon">B12</option>
+              <option value="nice">B28</option>
+            </select>
+          </div>
+          
+          <div class="search-field">
+            <i class="icon-home"></i>
+            <select>
+              <option value="">Marques</option>
+              <option value="apartment">Petro-ivoire</option>
+              <option value="house">Petro-ci</option>
+              <option value="villa">Oryx</option>
+              <option value="loft">shell</option>
+            </select>
+          </div>
+          
+          <button class="btn btn-primary">
+            <i class="icon-search"></i>
+            Rechercher
+          </button>
+        </div>
+        
+        <a href="properties.html" class="advanced-search">
+          Recherche avancée <i class="icon-arrow-right"></i>
+        </a>
+      </div>
+      -->
+    
+      </section>
+
+    <!-- Featured Properties Section -->
+    <section class="featured-properties section" id="featured-properties">
+      <div class="container">
+        <div class="section-header">
+          <h2>Nos biens d'exception</h2>
+          <p>Découvrez notre sélection exclusive de propriétés de gaz, minutieusement choisies pour répondre aux exigences des clients.</p>
+        </div>
+      
+        <div class="properties-grid">
+
+
+          {% for produit in produits %}
+            <div class="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-white hover:shadow-xl transition-shadow duration-300">
+              <img class="w-full object-cover" style="height: 29rem;" src="{{ produit.image.url }}" alt="Bouteille de gaz">
+              <div class="p-5">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-xl font-bold text-blue-900">{{ produit.name }}</h3>
+                </div>
+                <p class="mt-2 text-gray-600 text-sm">{{ produit.description }}</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <span class="text-orange-600 font-bold text-lg">{{ produit.price }} FCFA</span>
+                  <a href="{% url 'commande'  produit.id  %}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded-xl" data-produit-id="{{ produit.id }}">Commander</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+
+
+
+
+
+
+
+          <!-- Individual property cards will be inserted here by JavaScript -->
+        </div>
+
+        <div class="section-footer">
+          <a href="properties.html" class="btn btn-outline">Voir tous nos biens</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section section" id="about-section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" alt="Agence immobilière">
+            <div class="stats-card">
+              <div class="stat">
+                <span class="stat-value">15+</span>
+                <span class="stat-label">Années d'expérience</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">500+</span>
+                <span class="stat-label">Biens vendus</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">98%</span>
+                <span class="stat-label">Clients satisfaits</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">12</span>
+                <span class="stat-label">Agents experts</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-content">
+            <h2>Votre partenaire de confiance en vente de gaz</h2>
+            <p>Depuis plus de 15 ans, notre agence de vente de gaz par son excellence et son expertise dans le secteur du commercial haut de gamme. Nous mettons notre passion et notre savoir-faire a vos service.</p>
+            
+            <div class="advantages">
+              <div class="advantage">
+                <i class="icon-check"></i>
+                <div>
+                  <h3>Sélection exclusive</h3>
+                  <p>Un portfolio unique d'arcticle, rigoureusement sélectionnés.</p>
+                </div>
+              </div>
+              
+              <div class="advantage">
+                <i class="icon-check"></i>
+                <div>
+                  <h3>Accompagnement personnalisé</h3>
+                  <p>Des conseillers dédiés qui vous accompagnent à chaque étape de votre achat.</p>
+                </div>
+              </div>
+              
+              <div class="advantage">
+                <i class="icon-check"></i>
+                <div>
+                  <h3>Expertise locale et internationale</h3>
+                  <p>Une connaissance approfondie du marché commercial en cote d'ivoire et à l'international.</p>
+                </div>
+              </div>
+              
+              <div class="advantage">
+                <i class="icon-check"></i>
+                <div>
+                  <h3>Discrétion absolue</h3>
+                  <p>La confidentialité de vos démarches est assurée tout au long de vos Achat.</p>
+                </div>
+              </div>
+            </div>
+            
+            <a href="about.html" class="btn btn-primary">Découvrir notre agence</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section section" id="contact-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Contactez notre équipe</h2>
+          <p>Vous avez un achat ? Notre équipe d'experts est à votre écoute pour répondre à toutes vos questions.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Nos coordonnées</h3>
+            
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="icon-location"></i>
+              </div>
+              <div>
+                <h4>Adresse</h4>
+                <p>123 Avenue des Champs-Élysées<br>cocody, Cote d'Ivoire</p>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="icon-phone"></i>
+              </div>
+              <div>
+                <h4>Téléphone</h4>
+                <p>+225 45 67 89 01</p>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="icon-mail"></i>
+              </div>
+              <div>
+                <h4>Email</h4>
+                <p>contact@gaz-elegance.fr</p>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="icon-clock"></i>
+              </div>
+              <div>
+                <h4>Horaires d'ouverture</h4>
+                <p>Du lundi au vendredi : 9h - 19h<br>Samedi : 10h - 17h</p>
+              </div>
+            </div>
+            
+            <div class="social-links">
+              <h4>Nos réseaux sociaux</h4>
+              <div class="social-icons">
+                <a href="#" class="social-icon"><i class="icon-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="icon-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="icon-linkedin"></i></a>
+                <a href="#" class="social-icon"><i class="icon-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-form-container">
+            <h3>Envoyez-nous un message</h3>
+            
+            <form id="contactForm" class="contact-form">
+              <div class="form-group">
+                <label for="name">Nom complet <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required placeholder="Votre nom complet">
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email <span class="required">*</span></label>
+                  <input type="email" id="email" name="email" required placeholder="Votre email">
+                </div>
+                
+                <div class="form-group">
+                  <label for="phone">Téléphone</label>
+                  <input type="tel" id="phone" name="phone" placeholder="Votre numéro de téléphone">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Message <span class="required">*</span></label>
+                <textarea id="message" name="message" rows="5" required placeholder="Décrivez votre projet immobilier..."></textarea>
+              </div>
+              
+              <div class="form-group checkbox">
+                <input type="checkbox" id="privacy" name="privacy" required>
+                <label for="privacy">J'accepte la <a href="#">politique de confidentialité</a></label>
+              </div>
+              
+              <button type="submit" class="btn btn-primary btn-full">Envoyer</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <h3 class="footer-logo">
+            <span class="logo-primary">Gaz</span> Élégance
+          </h3>
+          <p>Notre agence de vente de luxe offre des arcticle d'exception à vos attentes les plus exigeantes.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link"><i class="icon-facebook"></i></a>
+            <a href="#" class="social-link"><i class="icon-instagram"></i></a>
+            <a href="#" class="social-link"><i class="icon-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="properties.html">Nos Bouteilles</a></li>
+            <li><a href="about.html">À Propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Nos Services</h4>
+          <ul>
+            <li><a href="#">Achat de biens</a></li>
+            <li><a href="#">Vente de gaz</a></li>
+            <li><a href="#">Recharge de gaz</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <i class="icon-location"></i>
+              <span>123 Avenue des Champs-Élysées, 75008 cocody, Cote d'Ivoire</span>
+            </li>
+            <li>
+              <i class="icon-phone"></i>
+              <a href="tel:+33145678901">+225 45 67 89 01</a>
+            </li>
+            <li>
+              <i class="icon-mail"></i>
+              <a href="mailto:contact@immobilier-elegance.fr">contact@GAZ-elegance.fr</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="currentYear"></span> GAZ. Tous droits réservés.</p>
+        <div class="footer-legal">
+          <a href="#">Mentions légales</a>
+          <a href="#">Politique de confidentialité</a>
+          <a href="#">CGV</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast">
+    <div class="toast-content">
+      <div class="toast-title">Notification</div>
+      <div class="toast-message">Message de notification</div>
+    </div>
+    <button class="toast-close">&times;</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="{% static 'js/scriptsGen.js' %}"></script>
+</body>
+</html>

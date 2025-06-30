@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+</head>
+<body>
+    <h2>Connexion à votre espace</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Se connecter</button>
+    </form>
+    {% if message %}
+        <p style="color:red;">{{ message }}</p>
+    {% endif %}
+</body>
+</html>

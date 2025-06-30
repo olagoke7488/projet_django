@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 
@@ -69,3 +70,18 @@ class Facture_Client(models.Model):
     def __str__(self) :
         return f"Le reçu de {self.customer.customer}"
     
+
+
+class PasserCommander(models.Model):
+    id_produit = models.ForeignKey(Produits, on_delete=models.CASCADE)
+    nom_complet = models.CharField(max_length=100)
+    telephone = models.CharField(max_length=15)
+    localisation = models.CharField(max_length=255)
+    heure = models.CharField(max_length=50)  # Utilisation de CharField pour stocker l'heure
+    quantite = models.PositiveIntegerField()
+    date_livraison = models.DateField()
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2) 
+    
+    def __str__(self):
+        return f"Commande de {self.nom_complet} pour le produit {self.id_produit.name}"
+ 

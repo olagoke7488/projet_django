@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Profil</title>
+</head>
+<body>
+    <h2>Mon Profil</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p><strong>Nom d'utilisateur :</strong> {{ request.user.username }}</p>
+        <p><strong>Email :</strong> {{ request.user.email }}</p>
+        <p>
+            <label>Téléphone :</label>
+            <input type="text" name="telephone" value="{{ profil.telephone }}">
+        </p>
+        <p>
+            <label>Adresse :</label>
+            <input type="text" name="adresse" value="{{ profil.adresse }}">
+        </p>
+        <p>
+            <label>Date de naissance :</label>
+            <input type="date" name="date_naissance" value="{{ profil.date_naissance|date:'Y-m-d' }}">
+        </p>
+        <p>
+            <label>Photo de profil :</label>
+            {% if profil.photo %}
+                <img src="{{ profil.photo.url }}" alt="Photo de profil" width="100"><br>
+            {% endif %}
+            <input type="file" name="photo">
+        </p>
+        <button type="submit">Mettre à jour</button>
+    </form>
+</body>
+</html>

@@ -118,4 +118,8 @@ class AjoutVente(forms.ModelForm):
             'customer': forms.TextInput(attrs={'placeholder': "Nom du client", "class": 'form-control'}),
             'quantite': forms.TextInput(attrs={'placeholder': "La quantité", "class": 'form-control'}),
         }
-        
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(label="Nom d'utilisateur", max_length=150)
+    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)

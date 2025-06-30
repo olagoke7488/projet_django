@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Utilisateur</title>
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Mon Dashboard</h2>
+    <a href="#profil">👤 {{ user.username }}</a>
+    <a href="#produits">📦 Produits</a>
+    <a href="#historique">📜 Historique</a>
+  </div>
+
+  <div class="main-content">
+    <div class="section" id="profil">
+      <h3>Profil</h3>
+      <p><strong>Nom :</strong> {{ user.username }}</p>
+      <p><strong>Email :</strong> {{ user.email }}</p>
+      <p><strong>Téléphone :</strong> {{ user.profile.telephone }}</p>
+    </div>
+
+    <div class="section" id="produits">
+      <h3>Produits</h3>
+      <ul>
+        {% for produit in produits %}
+        <li class="products-row" id="produit-{{ produit.id }}">{{ produit.name }} - {{ produit.price }} FCFA</li>
+        
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="section" id="historique">
+      <h3>Historique des commandes</h3>
+      <ul>
+        
+        {% for vente in historique1 %} 
+        <form method="POST">
+        {% csrf_token %}
+
+          <li class="historique-row" id="vente-{{ vente.id }}">
+            <strong>Produit :</strong> {{ vente.produit.name }} - 
+            <strong>Quantité :</strong> {{ vente.quantite }} - 
+            <strong>Date :</strong> {{ vente.sale_date }}
+            <strong>
+                <input style="display:none" type="text" id="element" name="element" value="vente_{{ vente.id }}" class="btn btn-danger">
+                <input type="submit" id="supprimer" name="supprimer" value="Supprimer" class="btn btn-danger">
+            </strong>
+          </li>
+        </form>
+        {% endfor %}
+        {% for commande in historique2 %}
+        <form  method="POST">
+          {% csrf_token %}
+
+          <li class="historique-row" id="commande-{{ commande.id }}">
+            <strong>Produit :</strong> {{ commande.id_produit.name }} - 
+            <strong>Quantité :</strong> {{ commande.quantite }} - 
+            <strong>Date de livraison :</strong> {{ commande.date_livraison }}
+              <strong>
+                <input style="display:none" type="text" id="element" name="element" value="commande_{{ commande.id }}" class="btn btn-danger">
+                <input type="submit" id="supprimer" name="supprimer" value="Supprimer" class="btn btn-danger">
+            </strong>
+          </li>
+        </form>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+from django.shortcuts import render
+from .models import Produit, Commande
+
+def dashboard(request):
+    produits = Produit.objects.all()
+    commandes = Commande.objects.filter(user=request.user)
+    
+    return render(request, 'client/dashboard.html', {
+        'produits': produits,
+        'commandes': commandes,
+        'user': request.user
+    })

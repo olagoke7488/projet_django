@@ -11,7 +11,8 @@ urlpatterns = [
   # path('ajout/',ajout_donnees,name='ajout'),
     
 #piergy
-path('',Acc,name='acc'),
+    path('',Acceuil,name='Acceuil'),
+    path('adminP/',Acc,name='acc'),
 
     path('produit/', Affichage.as_view(), name='home'),
     path('ajout/', AjoutProduits.as_view(), name='ajout'),
@@ -27,13 +28,15 @@ path('',Acc,name='acc'),
     path('recherche/', recherche, name='recherche'),
 
     path('ajoutvente/<int:id>/', VenteProduits, name='ajoutvente'),
-    path('ajoutvente/<int:id>/', VenteProduits, name='ajoutvente'),
+    path('commande/<int:id>/', commande, name='commande'),
     
     path('enregistrement-recu/<int:id>/', SaveRecu, name='saverecu'),
     path('saverecu/<int:id>/', SaveRecu, name='saverecu'),
-    path('facture/<int:sale_id>/', Facture, name='facture'),
+    path('facture/<str:sale_id>/', Facture, name='facture'),
     # path('ajout/',ajout_donnees,name='ajout'),
 
+    path('admin/', admin.site.urls),
+    path('dashboard/', dashboard, name='dashboard'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
