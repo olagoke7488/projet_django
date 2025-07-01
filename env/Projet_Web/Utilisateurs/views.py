@@ -74,7 +74,7 @@ def Connecter_Compte(request):
 
         if user is not None:
             login(request, user)
-            return redirect('acc')
+            return redirect('Acceuil')  # Redirection vers la page d'accueil après connexion
         
         else:
             messages.error(request, "Nom d'utilisateur ou le mot de passe incorect.")
@@ -103,7 +103,7 @@ def Verification_Mail(request):
             return redirect("modifierCode", email=email)
         
         else:
-            messages.error(request, "Cette adresse ne correspond à aucun compte. Veuillez réessayez avec une autre ou créez un compte")
+            messages.error(request, "Cette adresse ne correspond à aucun compte. Veuillez réessayer avec une autre ou créez un compte")
             return redirect("verification")
         
 

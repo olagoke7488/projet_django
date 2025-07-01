@@ -35,7 +35,7 @@ from .forms import LoginForm
 @login_required(login_url='login')
 def Acc(request):
 
-    return render(request, 'acc.html')
+    return render(request, 'A.html')
 
 
 class Affichage(LoginRequiredMixin, ListView):

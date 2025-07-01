@@ -11,7 +11,9 @@ urlpatterns = [
   # path('ajout/',ajout_donnees,name='ajout'),
     
 #piergy
-    path('',Acceuil,name='Acceuil'),
+    
+    path('Acceuil/',Acceuil,name='Acceuil'),
+    path('Acceuil/index.html',Acceuil,name='Acceuil'),
     path('adminP/',Acc,name='acc'),
 
     path('produit/', Affichage.as_view(), name='home'),

@@ -22,7 +22,11 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'bjp/css/main.css' %}">
 <!--===============================================================================================-->
 </head>
-<body>
+<body>  
+	 <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -83,7 +87,7 @@
 		</div>
 	</div>
 	
-	
+	</form>
 
 	
 <!--===============================================================================================-->	

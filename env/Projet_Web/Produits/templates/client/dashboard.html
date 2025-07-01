@@ -12,8 +12,11 @@
   <div class="sidebar">
     <h2>Mon Dashboard</h2>
     <a href="#profil">👤 {{ user.username }}</a>
-    <a href="#produits">📦 Produits</a>
+    <a href="{% url 'home' %}" class="nav-link">📦 NOS Bouteille</a>
     <a href="#historique">📜 Historique</a>
+    <a href="/deconnection/">
+        <div class="account-info-name">Déconnexion</div>
+    </a>
   </div>
 
   <div class="main-content">
@@ -21,15 +24,15 @@
       <h3>Profil</h3>
       <p><strong>Nom :</strong> {{ user.username }}</p>
       <p><strong>Email :</strong> {{ user.email }}</p>
-      <p><strong>Téléphone :</strong> {{ user.profile.telephone }}</p>
+
     </div>
 
     <div class="section" id="produits">
-      <h3>Produits</h3>
+      <h3>NOS Bouteille</h3>
       <ul>
         {% for produit in produits %}
-        <li class="products-row" id="produit-{{ produit.id }}">{{ produit.name }} - {{ produit.price }} FCFA</li>
-        
+        <li class="products-row" id="produit-{{ produit.id }}">{{ produit.name }} -{{ produit.category }} - {{ produit.price }} FCFA</li>
+
         {% endfor %}
       </ul>
     </div>

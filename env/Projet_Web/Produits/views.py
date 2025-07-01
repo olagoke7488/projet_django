@@ -160,7 +160,7 @@ def dashboard(request):
             return redirect('dashboard')
     # Récupération des produits pour le dashboard
     produits = Produits.objects.all()
-    return render(request, 'client/dashboard.html', {
+    return render(request, 'Client/dashboard.html', {
         "historique1": Vente.objects.all(),
         "historique2": PasserCommander.objects.all(),
         'produits': produits,
@@ -402,9 +402,6 @@ def commande(request,id):
 #     return render (request, "modification.html",{'produit':produit, 'categories':categories, 'errors':errors} )
     
     
-
-
-
 
 
   
